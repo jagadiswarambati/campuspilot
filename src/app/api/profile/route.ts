@@ -2,14 +2,22 @@ import { NextRequest, NextResponse } from "next/server";
 import { getRepository } from "@/lib/repository/db";
 import { z } from "zod";
 
+export const dynamic = "force-dynamic";
+
 const ProfileSchema = z.object({
-  name: z.string().min(1),
-  email: z.string().email(),
-  dietaryPreferences: z.array(z.string()),
-  defaultBudget: z.number().positive(),
-  preferredCampusLocation: z.string().min(1),
-  safetyBufferMinutes: z.number().int().min(1).max(30),
-  theme: z.enum(["dark", "light"]),
+  name: z.string().min(1).optional(),
+  email: z.string().email().optional(),
+  studentId: z.string().optional(),
+  role: z
+    .enum(["Student", "Faculty", "Administrator", "Other College Staff", "Other"])
+    .optional(),
+  onboardingCompleted: z.boolean().optional(),
+  department: z.string().optional(),
+  dietaryPreferences: z.array(z.string()).optional(),
+  defaultBudget: z.number().positive().optional(),
+  preferredCampusLocation: z.string().min(1).optional(),
+  safetyBufferMinutes: z.number().int().min(1).max(30).optional(),
+  theme: z.enum(["dark", "light"]).optional(),
 });
 
 export async function GET() {
@@ -45,4 +53,8 @@ export async function PUT(req: NextRequest) {
       { status: 500 }
     );
   }
+}
+
+export async function POST(req: NextRequest) {
+  return PUT(req);
 }

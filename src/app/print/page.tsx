@@ -123,7 +123,7 @@ export default function PrintPage() {
   const selectedShop = shops.find((s) => s.id === selectedShopId);
 
   return (
-    <div className="space-y-8 animate-in fade-in">
+    <div className="max-w-6xl mx-auto space-y-6 animate-in fade-in">
       {/* Header */}
       <div className="pb-4 border-b border-slate-800">
         <h1 className="text-2xl font-bold text-white flex items-center gap-2">

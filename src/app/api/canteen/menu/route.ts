@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { getRepository } from "@/lib/repository/db";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   try {
     const repo = getRepository();

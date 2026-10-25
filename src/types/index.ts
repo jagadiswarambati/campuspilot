@@ -9,11 +9,21 @@ export type DayOfWeek =
   | "Saturday"
   | "Sunday";
 
+export type CampusRole =
+  | "Student"
+  | "Faculty"
+  | "Administrator"
+  | "Other College Staff"
+  | "Other";
+
 export interface StudentProfile {
   id: string;
   name: string;
   studentId: string;
   email: string;
+  role: CampusRole;
+  onboardingCompleted: boolean;
+  department?: string;
   dietaryPreferences: string[]; // e.g. ["vegetarian", "vegan", "halal"]
   defaultBudget: number; // in currency units (e.g. ₹ or $)
   preferredCampusLocation: string; // e.g. "Main Academic Block"

@@ -130,7 +130,7 @@ export default function CanteenPage() {
   const categories = ["All", "Meal", "Snack", "Beverage", "Dessert"];
 
   return (
-    <div className="space-y-8 animate-in fade-in">
+    <div className="max-w-6xl mx-auto space-y-6 animate-in fade-in">
       {/* Header */}
       <div className="pb-4 border-b border-slate-800">
         <h1 className="text-2xl font-bold text-white flex items-center gap-2">

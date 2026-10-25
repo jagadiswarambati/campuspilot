@@ -12,11 +12,19 @@ import {
   CheckCircle2,
   AlertTriangle,
   Bot,
+  GraduationCap,
+  BookOpen,
+  ShieldCheck,
+  Briefcase,
+  Compass,
+  Info,
 } from "lucide-react";
-import { StudentProfile } from "@/types";
+import { StudentProfile, CampusRole } from "@/types";
+import { useProfile } from "@/components/ProfileContext";
 import { useToast } from "@/components/Toast";
 
 export default function ProfilePage() {
+  const { role, updateRole, resetOnboarding } = useProfile();
   const { success, error } = useToast();
   const [profile, setProfile] = useState<StudentProfile | null>(null);
   const [loading, setLoading] = useState(false);
@@ -25,6 +33,7 @@ export default function ProfilePage() {
   // Form states
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [selectedRole, setSelectedRole] = useState<CampusRole>("Student");
   const [defaultBudget, setDefaultBudget] = useState(250);
   const [preferredCampusLocation, setPreferredCampusLocation] = useState("loc-block-a");
   const [safetyBufferMinutes, setSafetyBufferMinutes] = useState(5);
@@ -39,6 +48,7 @@ export default function ProfilePage() {
         setProfile(data.profile);
         setName(data.profile.name);
         setEmail(data.profile.email);
+        setSelectedRole(data.profile.role || "Student");
         setDefaultBudget(data.profile.defaultBudget);
         setPreferredCampusLocation(data.profile.preferredCampusLocation);
         setSafetyBufferMinutes(data.profile.safetyBufferMinutes);
@@ -68,6 +78,7 @@ export default function ProfilePage() {
         body: JSON.stringify({
           name,
           email,
+          role: selectedRole,
           dietaryPreferences,
           defaultBudget,
           preferredCampusLocation,
@@ -78,7 +89,8 @@ export default function ProfilePage() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Failed to update profile");
 
-      success("Profile Updated", "Your preferences will guide future AI coordinated plans.");
+      await updateRole(selectedRole, true);
+      success("Profile Updated", "Preferences saved.");
       loadProfile();
     } catch (err: any) {
       error("Save Error", err.message);
@@ -105,28 +117,47 @@ export default function ProfilePage() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto space-y-8 animate-in fade-in">
+    <div className="max-w-4xl mx-auto space-y-6 animate-in fade-in">
       {/* Header */}
-      <div className="pb-4 border-b border-slate-800">
-        <h1 className="text-2xl font-bold text-white flex items-center gap-2">
-          <Settings className="w-6 h-6 text-violet-400" />
-          Student Profile & AI Preferences
+      <div className="pb-3 border-b border-slate-800">
+        <h1 className="text-xl sm:text-2xl font-bold text-white flex items-center gap-2">
+          <Settings className="w-5 h-5 text-violet-400" />
+          Settings & Role Preferences
         </h1>
-        <p className="text-xs text-slate-400 mt-1">
-          Configure default safety margins, dietary needs, budget constraints, and Gemma 4 model settings.
+        <p className="text-xs text-slate-400 mt-0.5">
+          Manage your campus role, scheduling safety margins, dietary preferences, and system defaults.
         </p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Form settings */}
-        <div className="lg:col-span-2 p-6 rounded-2xl bg-navy-900 border border-slate-800 shadow-glass space-y-6">
-          <h2 className="text-base font-bold text-white flex items-center gap-2">
+        {/* Main Settings Form */}
+        <div className="lg:col-span-2 p-5 sm:p-6 rounded-2xl bg-navy-900 border border-slate-800 shadow-glass space-y-5">
+          <h2 className="text-sm font-bold text-white flex items-center gap-2">
             <User className="w-4 h-4 text-violet-400" />
-            Personal & Scheduling Preferences
+            Profile Configuration
           </h2>
 
           <form onSubmit={handleSave} className="space-y-4 text-xs">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {/* Campus Role Selection */}
+            <div className="space-y-2 p-3.5 rounded-xl bg-slate-950/60 border border-slate-800">
+              <label className="block text-slate-300 font-semibold">Campus Role</label>
+              <select
+                value={selectedRole}
+                onChange={(e) => setSelectedRole(e.target.value as CampusRole)}
+                className="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-lg text-white font-medium focus:outline-none focus:border-violet-500"
+              >
+                <option value="Student">Student (Classes, Attendance, Printing & Break Coordination)</option>
+                <option value="Faculty">Faculty (Teaching Schedule, Classroom Locations & Print Orders)</option>
+                <option value="Administrator">Administrator (Facility Status, Print Queues & Operations)</option>
+                <option value="Other College Staff">Other College Staff (Daily Routine, Staff Dining & Printing)</option>
+                <option value="Other">Other (General Campus Experience)</option>
+              </select>
+              <p className="text-[11px] text-slate-500 leading-relaxed">
+                Role selection personalizes your dashboard view and priority widgets. It does not grant security privileges.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
               <div>
                 <label className="block text-slate-400 mb-1 font-medium">Display Name</label>
                 <input
@@ -139,7 +170,7 @@ export default function ProfilePage() {
               </div>
 
               <div>
-                <label className="block text-slate-400 mb-1 font-medium">Student Email</label>
+                <label className="block text-slate-400 mb-1 font-medium">Campus Email</label>
                 <input
                   type="email"
                   required
@@ -150,7 +181,7 @@ export default function ProfilePage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
               <div>
                 <label className="block text-slate-400 mb-1 font-medium">
                   Default Break Budget (₹)
@@ -168,7 +199,7 @@ export default function ProfilePage() {
 
               <div>
                 <label className="block text-slate-400 mb-1 font-medium">
-                  Default Campus Starting Location
+                  Default Starting Location
                 </label>
                 <select
                   value={preferredCampusLocation}
@@ -184,9 +215,9 @@ export default function ProfilePage() {
             </div>
 
             {/* Safety buffer slider */}
-            <div className="p-4 rounded-xl bg-slate-800/40 border border-slate-700/60 space-y-2">
+            <div className="p-3.5 rounded-xl bg-slate-950/60 border border-slate-800 space-y-2">
               <div className="flex justify-between items-center text-xs">
-                <span className="font-semibold text-white flex items-center gap-1.5">
+                <span className="font-semibold text-slate-300 flex items-center gap-1.5">
                   <Clock className="w-3.5 h-3.5 text-violet-400" />
                   Pre-Class Safety Buffer
                 </span>
@@ -203,13 +234,13 @@ export default function ProfilePage() {
                 onChange={(e) => setSafetyBufferMinutes(parseInt(e.target.value))}
                 className="w-full accent-violet-500 cursor-pointer"
               />
-              <p className="text-[11px] text-slate-400 leading-relaxed">
-                The Deterministic Scheduling Engine reserves this buffer before every class to guarantee you arrive before the lecturer closes the door.
+              <p className="text-[11px] text-slate-500 leading-relaxed">
+                The scheduling algorithm reserves this buffer before classes to prevent late arrivals.
               </p>
             </div>
 
             {/* Dietary preferences */}
-            <div className="space-y-2 pt-2">
+            <div className="space-y-1.5 pt-1">
               <label className="block text-slate-400 font-medium">Dietary Filters</label>
               <div className="flex flex-wrap gap-4">
                 <label className="flex items-center gap-2 cursor-pointer">
@@ -219,7 +250,7 @@ export default function ProfilePage() {
                     onChange={(e) => setIsVegetarian(e.target.checked)}
                     className="rounded bg-slate-950 border-slate-700 text-violet-600 focus:ring-0"
                   />
-                  <span className="text-slate-200">🌱 Vegetarian Preferred</span>
+                  <span className="text-slate-300">🌱 Vegetarian Preferred</span>
                 </label>
                 <label className="flex items-center gap-2 cursor-pointer">
                   <input
@@ -228,16 +259,16 @@ export default function ProfilePage() {
                     onChange={(e) => setIsVegan(e.target.checked)}
                     className="rounded bg-slate-950 border-slate-700 text-violet-600 focus:ring-0"
                   />
-                  <span className="text-slate-200">🍃 Vegan Only</span>
+                  <span className="text-slate-300">🍃 Vegan Only</span>
                 </label>
               </div>
             </div>
 
-            <div className="pt-4 border-t border-slate-800 flex justify-end">
+            <div className="pt-3 border-t border-slate-800 flex justify-end">
               <button
                 type="submit"
                 disabled={loading}
-                className="px-6 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-500 text-white font-semibold text-xs shadow-glow transition-all"
+                className="px-5 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-500 text-white font-semibold text-xs shadow-glow transition-all"
               >
                 {loading ? "Saving..." : "Save Preferences"}
               </button>
@@ -245,45 +276,55 @@ export default function ProfilePage() {
           </form>
         </div>
 
-        {/* AI & System Settings Sidebar */}
+        {/* Sidebar Diagnostics & Reset Controls */}
         <div className="space-y-4">
-          {/* Gemma 4 Instructions Box */}
-          <div className="p-6 rounded-2xl bg-navy-900 border border-slate-800 shadow-glass space-y-4">
-            <h3 className="text-sm font-bold text-white flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-violet-400" />
-              Gemma 4 Configuration
+          {/* Onboarding Reset Box */}
+          <div className="p-5 rounded-2xl bg-navy-900 border border-slate-800 shadow-glass space-y-3">
+            <h3 className="text-xs font-bold text-white uppercase tracking-wider font-mono flex items-center gap-1.5">
+              <Compass className="w-3.5 h-3.5 text-violet-400" />
+              Role Onboarding
             </h3>
+            <p className="text-xs text-slate-400 leading-relaxed">
+              Want to see the initial welcome screen again or pick a different role?
+            </p>
+            <button
+              onClick={() => resetOnboarding()}
+              className="w-full py-2 px-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold border border-slate-700 transition-colors"
+            >
+              Re-open Onboarding Modal
+            </button>
+          </div>
 
-            <div className="text-xs text-slate-300 space-y-3 leading-relaxed">
-              <p>
-                To enable live Gemma 4 model inference instead of Demo Mode:
-              </p>
-              <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 font-mono text-[11px] text-violet-300 space-y-1">
-                <div>File: <span className="text-white">.env.local</span></div>
-                <div>GEMINI_API_KEY=your_key_here</div>
-                <div>DEMO_MODE=false</div>
+          {/* AI Status Card */}
+          <div className="p-5 rounded-2xl bg-navy-900 border border-slate-800 shadow-glass space-y-3">
+            <h3 className="text-xs font-bold text-white uppercase tracking-wider font-mono flex items-center gap-1.5">
+              <Sparkles className="w-3.5 h-3.5 text-violet-400" />
+              Gemma 4 Integration
+            </h3>
+            <div className="text-xs text-slate-400 space-y-2 leading-relaxed">
+              <p>Model configured: <code className="text-violet-300 font-mono">gemma-4-26b-a4b-it</code></p>
+              <div className="p-2.5 bg-slate-950 rounded-lg border border-slate-800 font-mono text-[11px] text-slate-300">
+                <div>Provider: Google AI Studio</div>
+                <div>Server-Side Only: Protected</div>
               </div>
-              <p className="text-[11px] text-slate-400">
-                The key is strictly read server-side and never exposed to the client browser.
-              </p>
             </div>
           </div>
 
-          {/* Reset Demo Data */}
-          <div className="p-6 rounded-2xl bg-navy-900 border border-slate-800 shadow-glass space-y-3">
-            <h3 className="text-sm font-bold text-white flex items-center gap-2">
-              <RotateCcw className="w-4 h-4 text-amber-400" />
-              Reset Demo Sandbox
+          {/* Reset Sandbox */}
+          <div className="p-5 rounded-2xl bg-navy-900 border border-slate-800 shadow-glass space-y-3">
+            <h3 className="text-xs font-bold text-white uppercase tracking-wider font-mono flex items-center gap-1.5">
+              <RotateCcw className="w-3.5 h-3.5 text-amber-400" />
+              Factory Reset
             </h3>
             <p className="text-xs text-slate-400 leading-relaxed">
-              Restores seed timetable, 35-minute break scenario, print shop queues, and canteen menus to their pristine demonstration state.
+              Reset timetable, orders, notes, and menus back to pristine demo state.
             </p>
             <button
               onClick={handleReset}
               disabled={resetting}
-              className="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-rose-950/40 text-slate-200 hover:text-rose-300 border border-slate-700 hover:border-rose-800/60 text-xs font-semibold transition-all"
+              className="w-full py-2 px-3 rounded-lg bg-slate-800 hover:bg-rose-950/40 text-slate-300 hover:text-rose-300 border border-slate-700 text-xs font-semibold transition-colors"
             >
-              {resetting ? "Resetting Database..." : "Reset All Demo Data"}
+              {resetting ? "Resetting..." : "Reset All Demo Data"}
             </button>
           </div>
         </div>

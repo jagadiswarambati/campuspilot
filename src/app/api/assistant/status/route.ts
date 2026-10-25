@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { testGemmaConnectivity } from "@/lib/gemma/client";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   try {
     const status = await testGemmaConnectivity();
