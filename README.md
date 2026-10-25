@@ -1,3 +1,6 @@
+check once(due to slow network , i am unable to upload the video to drive)..so i tried deploying frontend...please chek it ...the api is working but render is not responding....if it do...i will change this:
+https://campuspilot-mu.vercel.app/
+
 # CampusPilot AI — Your College Day, Intelligently Coordinated
 
 > **Tagline:** Your college day, intelligently coordinated.  
