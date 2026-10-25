@@ -1,0 +1,918 @@
+{
+  "version": 1,
+  "lastUpdated": "2026-10-25T05:59:23.668Z",
+  "student": {
+    "id": "student-alex-01",
+    "name": "Alex Chen",
+    "studentId": "CS2024-8841",
+    "email": "alex.chen@campus.edu",
+    "dietaryPreferences": [
+      "Vegetarian"
+    ],
+    "defaultBudget": 250,
+    "preferredCampusLocation": "loc-block-a",
+    "safetyBufferMinutes": 5,
+    "theme": "dark"
+  },
+  "locations": [
+    {
+      "id": "loc-block-a",
+      "name": "Academic Block A",
+      "building": "Block A - Science & Computing",
+      "description": "Main lecture halls, Computer Science labs, and faculty rooms"
+    },
+    {
+      "id": "loc-block-b",
+      "name": "Engineering Block B",
+      "building": "Block B - Electrical & Mechanical",
+      "description": "Hardware workshops, seminar halls, and registrar office"
+    },
+    {
+      "id": "loc-library",
+      "name": "Central Library & Learning Commons",
+      "building": "Library Building - Ground Floor",
+      "description": "Reading rooms, high-speed printing center, digital repository"
+    },
+    {
+      "id": "loc-canteen",
+      "name": "Student Activity Center & Food Court",
+      "building": "SAC Ground Floor",
+      "description": "Main canteen, fast-food counters, express pickup desks"
+    },
+    {
+      "id": "loc-gate",
+      "name": "Main Campus Gate",
+      "building": "Gate 1 - North Plaza",
+      "description": "Security desk, transit stop, bike sharing station"
+    }
+  ],
+  "walkingTimes": [
+    {
+      "fromLocationId": "loc-block-a",
+      "toLocationId": "loc-library",
+      "minutes": 3
+    },
+    {
+      "fromLocationId": "loc-library",
+      "toLocationId": "loc-block-a",
+      "minutes": 3
+    },
+    {
+      "fromLocationId": "loc-block-a",
+      "toLocationId": "loc-canteen",
+      "minutes": 4
+    },
+    {
+      "fromLocationId": "loc-canteen",
+      "toLocationId": "loc-block-a",
+      "minutes": 4
+    },
+    {
+      "fromLocationId": "loc-block-a",
+      "toLocationId": "loc-block-b",
+      "minutes": 5
+    },
+    {
+      "fromLocationId": "loc-block-b",
+      "toLocationId": "loc-block-a",
+      "minutes": 5
+    },
+    {
+      "fromLocationId": "loc-block-a",
+      "toLocationId": "loc-gate",
+      "minutes": 6
+    },
+    {
+      "fromLocationId": "loc-gate",
+      "toLocationId": "loc-block-a",
+      "minutes": 6
+    },
+    {
+      "fromLocationId": "loc-library",
+      "toLocationId": "loc-canteen",
+      "minutes": 3
+    },
+    {
+      "fromLocationId": "loc-canteen",
+      "toLocationId": "loc-library",
+      "minutes": 3
+    },
+    {
+      "fromLocationId": "loc-library",
+      "toLocationId": "loc-block-b",
+      "minutes": 6
+    },
+    {
+      "fromLocationId": "loc-block-b",
+      "toLocationId": "loc-library",
+      "minutes": 6
+    },
+    {
+      "fromLocationId": "loc-library",
+      "toLocationId": "loc-gate",
+      "minutes": 4
+    },
+    {
+      "fromLocationId": "loc-gate",
+      "toLocationId": "loc-library",
+      "minutes": 4
+    },
+    {
+      "fromLocationId": "loc-canteen",
+      "toLocationId": "loc-block-b",
+      "minutes": 4
+    },
+    {
+      "fromLocationId": "loc-block-b",
+      "toLocationId": "loc-canteen",
+      "minutes": 4
+    },
+    {
+      "fromLocationId": "loc-canteen",
+      "toLocationId": "loc-gate",
+      "minutes": 5
+    },
+    {
+      "fromLocationId": "loc-gate",
+      "toLocationId": "loc-canteen",
+      "minutes": 5
+    },
+    {
+      "fromLocationId": "loc-block-b",
+      "toLocationId": "loc-gate",
+      "minutes": 7
+    },
+    {
+      "fromLocationId": "loc-gate",
+      "toLocationId": "loc-block-b",
+      "minutes": 7
+    }
+  ],
+  "printShops": [
+    {
+      "id": "shop-library",
+      "name": "Central Library Print Center",
+      "locationId": "loc-library",
+      "building": "Central Library, Ground Floor East",
+      "bwSinglePrice": 2,
+      "bwDoublePrice": 1.5,
+      "colorSinglePrice": 10,
+      "colorDoublePrice": 8,
+      "pagesPerMinute": 20,
+      "currentQueuePages": 40,
+      "queueWaitMinutesPer100Pages": 5,
+      "isOpen": true,
+      "supportedSizes": [
+        "A4",
+        "A3"
+      ]
+    },
+    {
+      "id": "shop-tech",
+      "name": "Engineering FastPrint Hub",
+      "locationId": "loc-block-b",
+      "building": "Block B, Room B-102",
+      "bwSinglePrice": 2.5,
+      "bwDoublePrice": 2,
+      "colorSinglePrice": 12,
+      "colorDoublePrice": 9,
+      "pagesPerMinute": 30,
+      "currentQueuePages": 110,
+      "queueWaitMinutesPer100Pages": 4,
+      "isOpen": true,
+      "supportedSizes": [
+        "A4"
+      ]
+    }
+  ],
+  "canteens": [
+    {
+      "id": "canteen-main",
+      "name": "Main Student Food Court",
+      "locationId": "loc-canteen",
+      "building": "Student Activity Center (SAC), Ground Floor",
+      "isOpen": true,
+      "currentWaitMinutes": 3
+    },
+    {
+      "id": "canteen-tech",
+      "name": "Tech Cafe Express",
+      "locationId": "loc-block-b",
+      "building": "Block B Ground Lobby",
+      "isOpen": true,
+      "currentWaitMinutes": 5
+    }
+  ],
+  "menuItems": [
+    {
+      "id": "item-veg-thali",
+      "canteenId": "canteen-main",
+      "name": "Mini Veg Thali (Paneer Butter Masala, Dal, 2 Roti, Jeera Rice)",
+      "description": "Complete wholesome balanced lunch prepared fresh with seasonal sides",
+      "category": "Meal",
+      "isVegetarian": true,
+      "isVegan": false,
+      "price": 110,
+      "preparationMinutes": 8,
+      "isAvailable": true,
+      "calories": 520
+    },
+    {
+      "id": "item-paneer-wrap",
+      "canteenId": "canteen-main",
+      "name": "Grilled Paneer Tikka Wrap",
+      "description": "Char-grilled spiced cottage cheese with mint chutney in whole wheat flatbread",
+      "category": "Meal",
+      "isVegetarian": true,
+      "isVegan": false,
+      "price": 85,
+      "preparationMinutes": 6,
+      "isAvailable": true,
+      "calories": 390
+    },
+    {
+      "id": "item-chole-kulche",
+      "canteenId": "canteen-main",
+      "name": "Amritsari Chole Kulche Box",
+      "description": "Spiced chickpeas served with 2 warm soft kulchas and pickled onions",
+      "category": "Meal",
+      "isVegetarian": true,
+      "isVegan": true,
+      "price": 75,
+      "preparationMinutes": 7,
+      "isAvailable": true,
+      "calories": 440
+    },
+    {
+      "id": "item-veg-sandwich",
+      "canteenId": "canteen-main",
+      "name": "Garden Veggie & Cheese Grilled Sandwich",
+      "description": "Toasted brown bread layered with cucumber, tomato, capsicum, and cheddar",
+      "category": "Snack",
+      "isVegetarian": true,
+      "isVegan": false,
+      "price": 60,
+      "preparationMinutes": 5,
+      "isAvailable": true,
+      "calories": 310
+    },
+    {
+      "id": "item-fruit-bowl",
+      "canteenId": "canteen-main",
+      "name": "Fresh Seasonal Fruit Bowl",
+      "description": "Chilled fresh papaya, pineapple, watermelon, and pomegranate seeds with lemon zest",
+      "category": "Snack",
+      "isVegetarian": true,
+      "isVegan": true,
+      "price": 50,
+      "preparationMinutes": 2,
+      "isAvailable": true,
+      "calories": 140
+    },
+    {
+      "id": "item-cold-coffee",
+      "canteenId": "canteen-main",
+      "name": "Signature Iced Cold Coffee",
+      "description": "Brewed espresso blended with chilled milk and light chocolate syrup",
+      "category": "Beverage",
+      "isVegetarian": true,
+      "isVegan": false,
+      "price": 45,
+      "preparationMinutes": 3,
+      "isAvailable": true,
+      "calories": 180
+    },
+    {
+      "id": "item-fresh-lime",
+      "canteenId": "canteen-main",
+      "name": "Fresh Mint Lime Soda",
+      "description": "Sparkling soda with freshly squeezed lime, crushed mint, and rock salt",
+      "category": "Beverage",
+      "isVegetarian": true,
+      "isVegan": true,
+      "price": 30,
+      "preparationMinutes": 2,
+      "isAvailable": true,
+      "calories": 60
+    },
+    {
+      "id": "item-chicken-roll",
+      "canteenId": "canteen-main",
+      "name": "Smoked Chicken Kathi Roll",
+      "description": "Tandoori chicken strips wrapped with egg roll flatbread and spicy mayo",
+      "category": "Meal",
+      "isVegetarian": false,
+      "isVegan": false,
+      "price": 115,
+      "preparationMinutes": 9,
+      "isAvailable": true,
+      "calories": 460
+    },
+    {
+      "id": "item-chicken-biryani",
+      "canteenId": "canteen-main",
+      "name": "Dum Chicken Biryani Express Bowl",
+      "description": "Aromatic basmati rice cooked with spiced chicken pieces and raita",
+      "category": "Meal",
+      "isVegetarian": false,
+      "isVegan": false,
+      "price": 140,
+      "preparationMinutes": 12,
+      "isAvailable": true,
+      "calories": 620
+    },
+    {
+      "id": "item-mushroom-pasta",
+      "canteenId": "canteen-main",
+      "name": "Creamy Wild Mushroom Penne",
+      "description": "Penne in creamy parmesan white sauce with sauteed mushrooms",
+      "category": "Meal",
+      "isVegetarian": true,
+      "isVegan": false,
+      "price": 135,
+      "preparationMinutes": 15,
+      "isAvailable": false,
+      "calories": 510
+    },
+    {
+      "id": "item-tech-espresso",
+      "canteenId": "canteen-tech",
+      "name": "Double Shot Espresso",
+      "description": "Dark roasted espresso shot",
+      "category": "Beverage",
+      "isVegetarian": true,
+      "isVegan": true,
+      "price": 40,
+      "preparationMinutes": 2,
+      "isAvailable": true,
+      "calories": 15
+    },
+    {
+      "id": "item-tech-muffin",
+      "canteenId": "canteen-tech",
+      "name": "Blueberry Crumb Muffin",
+      "description": "Freshly baked bakery muffin",
+      "category": "Dessert",
+      "isVegetarian": true,
+      "isVegan": false,
+      "price": 55,
+      "preparationMinutes": 2,
+      "isAvailable": true,
+      "calories": 320
+    }
+  ],
+  "timetable": [
+    {
+      "id": "class-mon-1",
+      "subjectCode": "CS301",
+      "subjectName": "Algorithms & Complexity",
+      "instructor": "Dr. Rachel Adams",
+      "room": "Room A-204",
+      "building": "Block A - Science & Computing",
+      "dayOfWeek": "Monday",
+      "startTime": "09:00",
+      "endTime": "10:15",
+      "color": "#8b5cf6"
+    },
+    {
+      "id": "class-mon-2",
+      "subjectCode": "CS303",
+      "subjectName": "Database Management Systems",
+      "instructor": "Prof. Vikram Malhotra",
+      "room": "Lab A-108",
+      "building": "Block A - Science & Computing",
+      "dayOfWeek": "Monday",
+      "startTime": "10:30",
+      "endTime": "12:00",
+      "color": "#6366f1"
+    },
+    {
+      "id": "class-mon-3",
+      "subjectCode": "CS302",
+      "subjectName": "Operating Systems Lecture",
+      "instructor": "Dr. Marcus Bell",
+      "room": "Auditorium A-01",
+      "building": "Block A - Science & Computing",
+      "dayOfWeek": "Monday",
+      "startTime": "12:35",
+      "endTime": "13:50",
+      "color": "#ec4899"
+    },
+    {
+      "id": "class-mon-4",
+      "subjectCode": "CS304",
+      "subjectName": "Computer Networks Lab",
+      "instructor": "Prof. Sarah Jenkins",
+      "room": "Lab B-201",
+      "building": "Block B - Electrical & Mechanical",
+      "dayOfWeek": "Monday",
+      "startTime": "14:30",
+      "endTime": "16:30",
+      "color": "#06b6d4"
+    },
+    {
+      "id": "class-tue-1",
+      "subjectCode": "CS302",
+      "subjectName": "Operating Systems Systems Lab",
+      "instructor": "Dr. Marcus Bell",
+      "room": "Lab A-102",
+      "building": "Block A - Science & Computing",
+      "dayOfWeek": "Tuesday",
+      "startTime": "09:30",
+      "endTime": "11:30",
+      "color": "#ec4899"
+    },
+    {
+      "id": "class-tue-2",
+      "subjectCode": "CS305",
+      "subjectName": "Software Engineering & Architecture",
+      "instructor": "Dr. Elena Rostova",
+      "room": "Room A-301",
+      "building": "Block A - Science & Computing",
+      "dayOfWeek": "Tuesday",
+      "startTime": "12:15",
+      "endTime": "13:30",
+      "color": "#10b981"
+    },
+    {
+      "id": "class-wed-1",
+      "subjectCode": "CS301",
+      "subjectName": "Algorithms & Complexity Tutorial",
+      "instructor": "Dr. Rachel Adams",
+      "room": "Room A-204",
+      "building": "Block A - Science & Computing",
+      "dayOfWeek": "Wednesday",
+      "startTime": "10:00",
+      "endTime": "11:15",
+      "color": "#8b5cf6"
+    },
+    {
+      "id": "class-wed-2",
+      "subjectCode": "CS304",
+      "subjectName": "Computer Networks",
+      "instructor": "Prof. Sarah Jenkins",
+      "room": "Room B-105",
+      "building": "Block B - Electrical & Mechanical",
+      "dayOfWeek": "Wednesday",
+      "startTime": "11:50",
+      "endTime": "13:05",
+      "color": "#06b6d4"
+    },
+    {
+      "id": "class-thu-1",
+      "subjectCode": "CS303",
+      "subjectName": "Database Systems Lab",
+      "instructor": "Prof. Vikram Malhotra",
+      "room": "Lab A-108",
+      "building": "Block A - Science & Computing",
+      "dayOfWeek": "Thursday",
+      "startTime": "13:00",
+      "endTime": "15:00",
+      "color": "#6366f1"
+    },
+    {
+      "id": "class-fri-1",
+      "subjectCode": "CS305",
+      "subjectName": "Software Engineering Capstone",
+      "instructor": "Dr. Elena Rostova",
+      "room": "Room A-301",
+      "building": "Block A - Science & Computing",
+      "dayOfWeek": "Friday",
+      "startTime": "11:00",
+      "endTime": "12:30",
+      "color": "#10b981"
+    },
+    {
+      "id": "class-fri-2",
+      "subjectCode": "CS301",
+      "subjectName": "Algorithms Seminar",
+      "instructor": "Dr. Rachel Adams",
+      "room": "Room A-204",
+      "building": "Block A - Science & Computing",
+      "dayOfWeek": "Friday",
+      "startTime": "13:05",
+      "endTime": "14:20",
+      "color": "#8b5cf6"
+    }
+  ],
+  "attendance": [
+    {
+      "id": "att-cs301",
+      "subjectCode": "CS301",
+      "subjectName": "Algorithms & Complexity",
+      "attendedClasses": 28,
+      "totalClasses": 32,
+      "targetPercentage": 75,
+      "updatedAt": "2026-10-24T18:00:00Z"
+    },
+    {
+      "id": "att-cs302",
+      "subjectCode": "CS302",
+      "subjectName": "Operating Systems",
+      "attendedClasses": 22,
+      "totalClasses": 30,
+      "targetPercentage": 75,
+      "updatedAt": "2026-10-24T18:00:00Z"
+    },
+    {
+      "id": "att-cs303",
+      "subjectCode": "CS303",
+      "subjectName": "Database Management Systems",
+      "attendedClasses": 31,
+      "totalClasses": 34,
+      "targetPercentage": 80,
+      "updatedAt": "2026-10-24T18:00:00Z"
+    },
+    {
+      "id": "att-cs304",
+      "subjectCode": "CS304",
+      "subjectName": "Computer Networks",
+      "attendedClasses": 18,
+      "totalClasses": 28,
+      "targetPercentage": 75,
+      "updatedAt": "2026-10-24T18:00:00Z"
+    },
+    {
+      "id": "att-cs305",
+      "subjectCode": "CS305",
+      "subjectName": "Software Engineering & Architecture",
+      "attendedClasses": 25,
+      "totalClasses": 26,
+      "targetPercentage": 80,
+      "updatedAt": "2026-10-24T18:00:00Z"
+    }
+  ],
+  "notes": [
+    {
+      "id": "note-1",
+      "studentId": "student-alex-01",
+      "title": "Operating Systems Lab Manual Printout",
+      "content": "Need 25 pages printed double-sided before the 12:35 PM lecture! Dr. Bell checks physical copies at door.",
+      "category": "print",
+      "isPinned": true,
+      "createdAt": "2026-10-25T08:30:00Z",
+      "updatedAt": "2026-10-25T08:30:00Z"
+    },
+    {
+      "id": "note-2",
+      "studentId": "student-alex-01",
+      "title": "Project Milestone 3 Review",
+      "content": "Submit database schema and ER diagram to Prof. Malhotra by Wednesday 5 PM.",
+      "category": "academic",
+      "isPinned": true,
+      "createdAt": "2026-10-24T14:15:00Z",
+      "updatedAt": "2026-10-24T14:15:00Z"
+    },
+    {
+      "id": "note-3",
+      "studentId": "student-alex-01",
+      "title": "Pick up ID Card duplicate",
+      "content": "Registrar office in Block B (Room B-110) open 2:00 - 4:00 PM.",
+      "category": "general",
+      "isPinned": false,
+      "createdAt": "2026-10-23T11:00:00Z",
+      "updatedAt": "2026-10-23T11:00:00Z"
+    }
+  ],
+  "plans": [
+    {
+      "id": "plan-1792907963668-nrjbag",
+      "studentId": "student-alex-01",
+      "createdAt": "2026-10-25T05:59:23.668Z",
+      "userPrompt": "I have 12 minutes before class. Need 50 pages printed and a lunch thali.",
+      "availableMinutes": 12,
+      "nextClass": null,
+      "currentLocationId": "loc-block-a",
+      "safetyBufferMinutes": 5,
+      "isFeasible": false,
+      "totalCost": 185,
+      "budget": 250,
+      "withinBudget": true,
+      "totalDurationMinutes": 21,
+      "slackMinutes": -14,
+      "sequence": [
+        {
+          "stepNumber": 1,
+          "actionType": "WALK",
+          "title": "Walk to Main Student Food Court Express Counter",
+          "location": "Student Activity Center & Food Court",
+          "locationId": "loc-canteen",
+          "startMinute": 0,
+          "endMinute": 4,
+          "durationMinutes": 4,
+          "details": "Walk 4 min to place order so kitchen begins preparation immediately"
+        },
+        {
+          "stepNumber": 2,
+          "actionType": "FOOD_ORDER",
+          "title": "Order Meal via Express Counter",
+          "location": "Main Student Food Court",
+          "locationId": "loc-canteen",
+          "startMinute": 4,
+          "endMinute": 5,
+          "durationMinutes": 1,
+          "details": "Order placed! Kitchen starts preparation (11 min total prep)"
+        },
+        {
+          "stepNumber": 3,
+          "actionType": "WALK",
+          "title": "Walk to Central Library Print Center",
+          "location": "Central Library & Learning Commons",
+          "locationId": "loc-library",
+          "startMinute": 5,
+          "endMinute": 8,
+          "durationMinutes": 3,
+          "details": "Walk 3 min to print shop during kitchen cooking time"
+        },
+        {
+          "stepNumber": 4,
+          "actionType": "PRINT_ORDER",
+          "title": "Collect Prints (50 Pages)",
+          "location": "Central Library Print Center",
+          "locationId": "loc-library",
+          "startMinute": 8,
+          "endMinute": 13,
+          "durationMinutes": 5,
+          "details": "Print completed: ₹75 (2m queue + 3m print)"
+        },
+        {
+          "stepNumber": 5,
+          "actionType": "WALK",
+          "title": "Return to Canteen for Pickup",
+          "location": "Student Activity Center & Food Court",
+          "locationId": "loc-canteen",
+          "startMinute": 13,
+          "endMinute": 16,
+          "durationMinutes": 3,
+          "details": "Walk 3 min to pickup desk"
+        },
+        {
+          "stepNumber": 6,
+          "actionType": "FOOD_PICKUP",
+          "title": "Pick up Prepared Food",
+          "location": "Main Student Food Court",
+          "locationId": "loc-canteen",
+          "startMinute": 16,
+          "endMinute": 17,
+          "durationMinutes": 1,
+          "details": "Food is freshly ready upon arrival! Grab packed order."
+        },
+        {
+          "stepNumber": 7,
+          "actionType": "TRAVEL_TO_CLASS",
+          "title": "Walk to Next Class",
+          "location": "Academic Block A",
+          "locationId": "loc-block-a",
+          "startMinute": 17,
+          "endMinute": 21,
+          "durationMinutes": 4,
+          "details": "Walk 4 min to lecture hall before class starts"
+        }
+      ],
+      "printProposal": {
+        "shopId": "shop-library",
+        "shopName": "Central Library Print Center",
+        "pageCount": 50,
+        "copies": 1,
+        "totalPages": 50,
+        "isColor": false,
+        "isDoubleSided": true,
+        "unitPricePerPage": 1.5,
+        "totalCost": 75,
+        "queueMinutes": 2,
+        "printMinutes": 3,
+        "totalDurationMinutes": 5,
+        "shopLocationId": "loc-library",
+        "documentName": "Coursework_25Pages.pdf"
+      },
+      "foodProposal": {
+        "canteenId": "canteen-main",
+        "canteenName": "Main Student Food Court",
+        "items": [
+          {
+            "id": "item-veg-thali",
+            "name": "Mini Veg Thali (Paneer Butter Masala, Dal, 2 Roti, Jeera Rice)",
+            "quantity": 1,
+            "unitPrice": 110,
+            "subtotal": 110,
+            "preparationMinutes": 8,
+            "isVegetarian": true
+          }
+        ],
+        "totalCost": 110,
+        "preparationMinutes": 11,
+        "isVegetarianOnly": true,
+        "canteenLocationId": "loc-canteen"
+      },
+      "conflicts": [
+        "Schedule Overrun: Requested tasks require 21 min + 5 min safety buffer (26 min total), but you only have 12 min before your next class."
+      ],
+      "reasonForFailure": "Schedule Overrun: Requested tasks require 21 min + 5 min safety buffer (26 min total), but you only have 12 min before your next class.",
+      "alternatives": [
+        {
+          "id": "alt-express-food",
+          "title": "Switch to Express Grab-and-Go Snack",
+          "description": "Replace hot kitchen meal with a ready-to-go fruit bowl or iced cold coffee (2-3 min prep).",
+          "changes": "Saves 5-7 minutes of food preparation time.",
+          "estimatedMinutes": 18,
+          "estimatedCost": 120,
+          "isFeasible": false
+        },
+        {
+          "id": "alt-print-only",
+          "title": "Print Now, Eat After Class",
+          "description": "Complete the urgent 25-page printout now before lecture. Order lunch during the afternoon break.",
+          "changes": "Reduces total time to 11 min (leaves -4 min buffer).",
+          "estimatedMinutes": 11,
+          "estimatedCost": 75,
+          "isFeasible": false
+        }
+      ],
+      "requiresConfirmation": true,
+      "confirmed": false,
+      "status": "DRAFT"
+    },
+    {
+      "id": "plan-1792907963601-erp0vp",
+      "studentId": "student-alex-01",
+      "createdAt": "2026-10-25T05:59:23.601Z",
+      "userPrompt": "I have 35 minutes before my next class. I need a vegetarian lunch and 25 pages printed. Find the fastest plan that fits my budget and will not make me late.",
+      "availableMinutes": 35,
+      "nextClass": null,
+      "currentLocationId": "loc-block-a",
+      "safetyBufferMinutes": 5,
+      "isFeasible": true,
+      "totalCost": 147.5,
+      "budget": 250,
+      "withinBudget": true,
+      "totalDurationMinutes": 20,
+      "slackMinutes": 10,
+      "sequence": [
+        {
+          "stepNumber": 1,
+          "actionType": "WALK",
+          "title": "Walk to Main Student Food Court Express Counter",
+          "location": "Student Activity Center & Food Court",
+          "locationId": "loc-canteen",
+          "startMinute": 0,
+          "endMinute": 4,
+          "durationMinutes": 4,
+          "details": "Walk 4 min to place order so kitchen begins preparation immediately"
+        },
+        {
+          "stepNumber": 2,
+          "actionType": "FOOD_ORDER",
+          "title": "Order Meal via Express Counter",
+          "location": "Main Student Food Court",
+          "locationId": "loc-canteen",
+          "startMinute": 4,
+          "endMinute": 5,
+          "durationMinutes": 1,
+          "details": "Order placed! Kitchen starts preparation (11 min total prep)"
+        },
+        {
+          "stepNumber": 3,
+          "actionType": "WALK",
+          "title": "Walk to Central Library Print Center",
+          "location": "Central Library & Learning Commons",
+          "locationId": "loc-library",
+          "startMinute": 5,
+          "endMinute": 8,
+          "durationMinutes": 3,
+          "details": "Walk 3 min to print shop during kitchen cooking time"
+        },
+        {
+          "stepNumber": 4,
+          "actionType": "PRINT_ORDER",
+          "title": "Collect Prints (25 Pages)",
+          "location": "Central Library Print Center",
+          "locationId": "loc-library",
+          "startMinute": 8,
+          "endMinute": 12,
+          "durationMinutes": 4,
+          "details": "Print completed: ₹37.5 (2m queue + 2m print)"
+        },
+        {
+          "stepNumber": 5,
+          "actionType": "WALK",
+          "title": "Return to Canteen for Pickup",
+          "location": "Student Activity Center & Food Court",
+          "locationId": "loc-canteen",
+          "startMinute": 12,
+          "endMinute": 15,
+          "durationMinutes": 3,
+          "details": "Walk 3 min to pickup desk"
+        },
+        {
+          "stepNumber": 6,
+          "actionType": "FOOD_PICKUP",
+          "title": "Pick up Prepared Food",
+          "location": "Main Student Food Court",
+          "locationId": "loc-canteen",
+          "startMinute": 15,
+          "endMinute": 16,
+          "durationMinutes": 1,
+          "details": "Food is freshly ready upon arrival! Grab packed order."
+        },
+        {
+          "stepNumber": 7,
+          "actionType": "TRAVEL_TO_CLASS",
+          "title": "Walk to Next Class",
+          "location": "Academic Block A",
+          "locationId": "loc-block-a",
+          "startMinute": 16,
+          "endMinute": 20,
+          "durationMinutes": 4,
+          "details": "Walk 4 min to lecture hall before class starts"
+        }
+      ],
+      "printProposal": {
+        "shopId": "shop-library",
+        "shopName": "Central Library Print Center",
+        "pageCount": 25,
+        "copies": 1,
+        "totalPages": 25,
+        "isColor": false,
+        "isDoubleSided": true,
+        "unitPricePerPage": 1.5,
+        "totalCost": 37.5,
+        "queueMinutes": 2,
+        "printMinutes": 2,
+        "totalDurationMinutes": 4,
+        "shopLocationId": "loc-library",
+        "documentName": "Coursework_25Pages.pdf"
+      },
+      "foodProposal": {
+        "canteenId": "canteen-main",
+        "canteenName": "Main Student Food Court",
+        "items": [
+          {
+            "id": "item-veg-thali",
+            "name": "Mini Veg Thali (Paneer Butter Masala, Dal, 2 Roti, Jeera Rice)",
+            "quantity": 1,
+            "unitPrice": 110,
+            "subtotal": 110,
+            "preparationMinutes": 8,
+            "isVegetarian": true
+          }
+        ],
+        "totalCost": 110,
+        "preparationMinutes": 11,
+        "isVegetarianOnly": true,
+        "canteenLocationId": "loc-canteen"
+      },
+      "conflicts": [],
+      "alternatives": [],
+      "requiresConfirmation": true,
+      "confirmed": true,
+      "status": "CONFIRMED",
+      "simulatedOrderIds": {
+        "printOrderId": "PO-963617-965",
+        "foodOrderId": "FO-963620-982"
+      }
+    }
+  ],
+  "printOrders": [
+    {
+      "id": "PO-963617-965",
+      "planId": "plan-1792907963601-erp0vp",
+      "studentId": "student-alex-01",
+      "shopId": "shop-library",
+      "shopName": "Central Library Print Center",
+      "documentName": "Coursework_25Pages.pdf",
+      "pageCount": 25,
+      "copies": 1,
+      "isColor": false,
+      "isDoubleSided": true,
+      "paperSize": "A4",
+      "totalCost": 37.5,
+      "status": "QUEUED",
+      "estimatedReadyTime": "2026-10-25T06:03:23.617Z",
+      "createdAt": "2026-10-25T05:59:23.617Z",
+      "isSimulated": true
+    }
+  ],
+  "foodOrders": [
+    {
+      "id": "FO-963620-982",
+      "planId": "plan-1792907963601-erp0vp",
+      "studentId": "student-alex-01",
+      "canteenId": "canteen-main",
+      "canteenName": "Main Student Food Court",
+      "items": [
+        {
+          "itemId": "item-veg-thali",
+          "name": "Mini Veg Thali (Paneer Butter Masala, Dal, 2 Roti, Jeera Rice)",
+          "quantity": 1,
+          "unitPrice": 110,
+          "subtotal": 110
+        }
+      ],
+      "totalCost": 110,
+      "status": "RECEIVED",
+      "estimatedReadyTime": "2026-10-25T06:10:23.617Z",
+      "createdAt": "2026-10-25T05:59:23.617Z",
+      "isSimulated": true
+    }
+  ]
+}
